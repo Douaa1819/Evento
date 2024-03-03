@@ -27,6 +27,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/Home',[AdminController::class,'index'])->name('admine.home');
     Route::get('/Catégorie',[CategoryController::class,'index'])->name('catégorie.index');
+    Route::post('/Catégorie/Ajouter',[CategoryController::class,'store'])->name('catégorie.sotre');
+    Route::put('/Catégorie/Modifier/{categorie}',[CategoryController::class,'update'])->name('categorie.update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

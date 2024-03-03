@@ -11,7 +11,17 @@
             Ajouter
         </button>
     </div>
-
+    @if(session('success'))
+    <div class="flex items-center p-4 mb-4  mx-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+      <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+      </svg>
+      <div>
+        <span class="font-medium">Succès!</span> {{ session('success') }}
+      </div>
+    </div>
+    
+    @endif
     <div class="container mx-auto mt-5 flex justify-center  ">
         <table class="table-auto  w-auto mt-3 ">
         <thead>
@@ -25,7 +35,7 @@
             <tr>
                 <td class="border px-4 py-2">{{ $categories->nom }}</td>
                 <td class="border px-4 py-2 flex justify-around">
-                    <button class="btn-edit bg-blue-500 hover:bg-blue-700 text-white mx-4 font-bold py-1 px-2 rounded flex items-center" data-id="" data-nom="">
+                    <button class="btn-edit bg-blue-500 hover:bg-blue-700 text-white mx-4 font-bold py-1 px-2 rounded flex items-center" data-id="{{$categories->id}}" data-nom="{{$categories->nom}}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                         </svg>
@@ -43,6 +53,8 @@
                     
                 </td>
             </tr>
+           
+
             @endforeach
         </tbody>
        
@@ -53,10 +65,10 @@
 </div>
 
 
-<!-- Pop-up Ajouter Spécialité -->
+<!-- Pop-up Ajouter Catégorie -->
 <div id="addModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center">
     <div class="bg-white p-4 rounded-lg max-w-sm mx-auto">
-        <form action="" method="POST">
+        <form action="{{route('catégorie.sotre')}}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="specialiteNom" class="block text-gray-700 text-sm font-bold mb-2">Nom de Catégorie:</label>
@@ -78,7 +90,8 @@
 <!-- Pop-up de Modification -->
 <div id="modalEdit" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
     <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-        <form id="editForm" action="" method="POST">
+        <form id="editForm"  action="" method="POST">
+
             @csrf
             <input type="hidden" name="_method" value="PUT">
             @method('PUT')
@@ -120,17 +133,19 @@
         const closeEditModal = document.getElementById('closeEditModal');
     
         editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const id = button.getAttribute('data-id');
-                const nom = button.getAttribute('data-nom'); // Assurez-vous que cette ligne utilise `nom` pour correspondre avec l'attribut.
-    
-                const form = document.getElementById('editForm');
-                form.action = ``; // Met à jour l'action avec l'ID correct
-                document.getElementById('editNom').value = nom; // Assurez-vous que cette ligne utilise la même variable `nom`.
-    
-                modalEdit.classList.remove('hidden');
-            });
-        });
+    button.addEventListener('click', function() {
+        const id = button.getAttribute('data-id');
+        const nom = button.getAttribute('data-nom');
+
+        // Mettez à jour l'URL d'action avec l'ID de la catégorie
+        const form = document.getElementById('editForm');
+        form.action = `/Catégorie/Modifier/${id}`; // Assurez-vous que cette URL correspond à la définition de votre route
+
+        document.getElementById('editNom').value = nom;
+        modalEdit.classList.remove('hidden');
+    });
+});
+
     
         closeEditModal.addEventListener('click', function() {
             modalEdit.classList.add('hidden');
