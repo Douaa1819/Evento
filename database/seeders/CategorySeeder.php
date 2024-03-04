@@ -10,18 +10,11 @@ class CategorySeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+ 
+        public function run()
     {
-        \App\Models\Category::insert([
-            ['nom' => 'Musique'],
-            ['nom' => 'Sport'],
-            ['nom' => 'Art'],
-            ['nom' => 'Technologie'],
-            ['nom' => 'Cinéma'],
-            ['nom' => 'Théâtre'],
-            ['nom' => 'Littérature'],
-            ['nom' => 'Voyage']
-        ]);
+        \App\Models\Category::factory()->count(10)->create();
+    }
         
     }
-}
+

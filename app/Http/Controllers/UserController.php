@@ -1,20 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\Evenement;
 
-class AdminController extends Controller
+use Illuminate\Http\Request;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $nombreUtilisateurs = User::count();
-        $nombreEvenments = Evenement::count();
-        return view('admine.home', compact('nombreUtilisateurs', 'nombreEvenments'));
+        //
     }
 
     /**

@@ -17,7 +17,7 @@
                         <div class="w-1/2">
                             <div class="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
                                 <p class="text-2xl font-bold text-black dark:text-white">
-                                    12
+                                    {{ $nombreEvenments }}
                                 </p>
                                 <p class="text-sm text-gray-400">
                                     nombre des évenments
@@ -29,7 +29,8 @@
                         <div class="w-1/2">
                             <div class="relative w-full px-4 py-6 bg-white shadow-lg dark:bg-gray-700">
                                 <p class="text-2xl font-bold text-black dark:text-white">
-                                    93.76
+                                   {{ $nombreUtilisateurs }}
+                                 
                                 </p>
                                 <p class="text-sm text-gray-400">
                                    nombre d'utilisateurs
