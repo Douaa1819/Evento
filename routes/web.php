@@ -26,18 +26,50 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/Home',[AdminController::class,'index'])->name('admine.home');
+//--------------------------Les Routes de Admine ---------------------------------------------------------------------------------------
 
-    Route::get('/index',[ClientController::class,'index'])->name('client.home');
-    Route::get('/Home',[OrganizateurController::class,'index'])->name('organisateur.home');
+Route::middleware(['auth', 'admine'])->group(function () {
+    Route::get('/Home',[AdminController::class,'index'])->name('admine.home');
     Route::get('/Catégorie',[CategoryController::class,'index'])->name('catégorie.index');
     Route::post('/Catégorie/Ajouter',[CategoryController::class,'store'])->name('catégorie.sotre');
     Route::put('/Catégorie/Modifier/{categorie}',[CategoryController::class,'update'])->name('categorie.update');
     Route::delete('/Catégorie/Supprimer/{categorie}', [CategoryController::class, 'destroy'])->name('categorie.delete');
+    });
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+
+//-----------------------------Les Routes de Client----------------------------------------------------------------------------------
+
+    Route::middleware(['auth', 'client'])->group(function () {
+    Route::get('/index',[ClientController::class,'index'])->name('client.home');
+
+    });
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------Les Routes de Organizateur--------------------------------------------------------------
+
+    Route::middleware(['auth', 'organisateur'])->group(function () {
+    Route::get('/Home',[OrganizateurController::class,'index'])->name('organisateur.home');     
+        });
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------    
+
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/logout', function () {
+    request()->session()->invalidate();
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+})->name('logout.home');
 require __DIR__.'/auth.php';
