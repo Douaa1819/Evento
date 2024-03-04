@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -25,7 +25,7 @@ class EvenementSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            // Ajoutez autant d'événements que vous le souhaitez en suivant le même schéma
+            // Ajoutez 
         ]);
     }
 }
