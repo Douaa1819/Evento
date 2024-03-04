@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrganizateurController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/Home',[AdminController::class,'index'])->name('admine.home');
+
+    Route::get('/index',[ClientController::class,'index'])->name('client.home');
+    Route::get('/Home',[OrganizateurController::class,'index'])->name('organisateur.home');
     Route::get('/Catégorie',[CategoryController::class,'index'])->name('catégorie.index');
     Route::post('/Catégorie/Ajouter',[CategoryController::class,'store'])->name('catégorie.sotre');
     Route::put('/Catégorie/Modifier/{categorie}',[CategoryController::class,'update'])->name('categorie.update');
