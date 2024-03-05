@@ -16,13 +16,6 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user(); 
-        if ($user->role == 'Client') {
-            return view('client.index', compact('user'));
-        } elseif ($user->role == 'Organisateur') {
-            return view('organisateur.home', compact('user'));}
-
-        return redirect('/');
     }
 
     /**

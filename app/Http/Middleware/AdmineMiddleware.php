@@ -16,9 +16,14 @@ class AdmineMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->role='admine')
+        if(Auth::check() && Auth::user()->role==='admine'){
         return $next($request);
-        return redirect('/dashboard')->with('error', "Vous n'avez pas accès à cette section.");
+      
     }
+    else {
+        abort('403','unauthorized');
+    }
+
     
+    }
 }

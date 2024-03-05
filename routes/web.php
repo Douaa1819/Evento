@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
 //--------------------------Les Routes de Admine ---------------------------------------------------------------------------------------
 
 Route::middleware(['auth', 'admine'])->group(function () {
-    Route::get('/Home',[AdminController::class,'index'])->name('admine.home');
+    Route::get('/Admine',[AdminController::class,'index'])->name('admine.home');
     Route::get('/Catégorie',[CategoryController::class,'index'])->name('catégorie.index');
     Route::post('/Catégorie/Ajouter',[CategoryController::class,'store'])->name('catégorie.sotre');
     Route::put('/Catégorie/Modifier/{categorie}',[CategoryController::class,'update'])->name('categorie.update');

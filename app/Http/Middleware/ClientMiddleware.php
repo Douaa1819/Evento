@@ -16,10 +16,14 @@ class ClientMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role == 'client') {
-            return $next($request);
-        }
+        if(Auth::check() && Auth::user()->role === 'client'){
+        return $next($request);
+      
+    }
+    else {
+        abort('403','unauthorized');
+    }
 
-        return redirect('/dashboard')->with('error', "Vous n'avez pas accès à cette section.");
+    
     }
 }

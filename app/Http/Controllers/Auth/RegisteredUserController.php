@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Organizateur; // Assuming this is the correct namespace
-use App\Models\Client ; // Assuming this is the correct namespace
+use App\Models\Organizateur; 
+use App\Models\Client ; 
+use App\Models\Admin ;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -61,15 +62,22 @@ class RegisteredUserController extends Controller
             ]);
         }
 
+        if ($request->role === 'admine') {
+            Admin ::create([ 
+                'user_id' => $user->id,
+            ]);
+        }
+
         event(new Registered($user));
 
         Auth::login($user);
 
         if ($request->role === 'client') { 
             return redirect('/index');
-        } elseif ($request->role === 'organisateur') { 
-            
+        } elseif ($request->role === 'organisateur') {  
             return redirect('/Home');
+        } elseif ($request->role === 'admine') { 
+            return redirect('/Admine');
         } else {
             return redirect('/register');
         }
