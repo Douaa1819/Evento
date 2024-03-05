@@ -25,7 +25,7 @@ class UserController extends Controller
     $user->client->save();}
     elseif($user->organisateur){
         $user->organisateur->is_banned='1';
-        $user->organisateurt->save();
+        $user->organisateur->save();
     }
     return back()->with('success', 'Utilisateur débloqué avec succès.');
     }
@@ -37,7 +37,7 @@ class UserController extends Controller
         $user->client->save();}
         elseif($user->organisateur){
             $user->organisateur->is_banned='0';
-            $user->organisateurt->save();
+            $user->organisateur->save();
         }
         return back()->with('success', 'Utilisateur débloqué avec succès.');
 

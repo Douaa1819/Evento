@@ -30,11 +30,18 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user(); 
-        if ($user->role == 'Client') {
+        if ($user->role == 'client') {
+            if($user->client->is_banned='1'){
+                abort('403','unauthorized');
+            }else{
             return redirect('/index');
-        } elseif ($user->role == 'Organisateur') {
+        }
+        } elseif ($user->role == 'organisateur') {
+            if($user->organisateur->is_banned='1'){
+                abort('403','unauthorized');
+            }else{
             return redirect('/Home');
-            return view('organisateur.home', compact('user'));
+        }
         } elseif ($user->role == 'admine') {
             return redirect('/Admine');
             ;}
