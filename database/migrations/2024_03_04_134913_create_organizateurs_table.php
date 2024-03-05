@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('organizateurs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); 
+            $table->boolean('is_banned')->default('0'); 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

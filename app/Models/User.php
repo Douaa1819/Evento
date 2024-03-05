@@ -24,6 +24,17 @@ class User extends Authenticatable
         'role',
     ];
 
+
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
+    public function organisateur()
+    {
+        return $this->hasOne(Organizateur::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

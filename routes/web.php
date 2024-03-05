@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrganizateurController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,9 @@ Route::middleware(['auth', 'admine'])->group(function () {
     Route::post('/Catégorie/Ajouter',[CategoryController::class,'store'])->name('catégorie.sotre');
     Route::put('/Catégorie/Modifier/{categorie}',[CategoryController::class,'update'])->name('categorie.update');
     Route::delete('/Catégorie/Supprimer/{categorie}', [CategoryController::class, 'destroy'])->name('categorie.delete');
+    Route::get('/Utilisateur-access',[UserController::class,'index'])->name('admine.utilisateur');
+    Route::post('/Utilisateur-access/{user}/bloquer',[UserController::class,'block'])->name('admine.bloquer');
+    Route::post('/Utilisateur-access/{user}/debloquer',[UserController::class,'unblock'])->name('admine.débloquer');
     });
 
 

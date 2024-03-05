@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Evenement;
@@ -13,8 +15,9 @@ class AdminController extends Controller
     public function index()
     {
         $nombreUtilisateurs = User::count();
+        $nombreCatégorie=Category::count();
         $nombreEvenments = Evenement::count();
-        return view('admine.home', compact('nombreUtilisateurs', 'nombreEvenments'));
+        return view('admine.home', compact('nombreUtilisateurs', 'nombreEvenments','nombreCatégorie'));
     }
 
     /**

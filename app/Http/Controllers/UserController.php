@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,12 +12,36 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+      $utilisateur = User::all();
+      return view('admine.utilisateur',compact('utilisateur'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
+
+
+    public function block(User $user){
+        if($user->client){
+    $user->client->is_banned='1';
+    $user->client->save();}
+    elseif($user->organisateur){
+        $user->organisateur->is_banned='1';
+        $user->organisateurt->save();
+    }
+    return back()->with('success', 'Utilisateur débloqué avec succès.');
+    }
+
+
+    public function unblock(User $user){
+        if($user->client){
+        $user->client->is_banned='0';
+        $user->client->save();}
+        elseif($user->organisateur){
+            $user->organisateur->is_banned='0';
+            $user->organisateurt->save();
+        }
+        return back()->with('success', 'Utilisateur débloqué avec succès.');
+
+    }
     public function create()
     {
         //

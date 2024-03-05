@@ -9,7 +9,7 @@ class EvenementSeeder extends Seeder
     public function run()
     {
 
-        $categoryId = 1; // Exemple, à remplacer par un ID valide de votre table categories
+        $categoryId = 1; 
 
         DB::table('evenements')->insert([
             [
