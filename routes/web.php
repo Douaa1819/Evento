@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EvenmentController;
 use App\Http\Controllers\OrganizateurController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,10 @@ Route::middleware(['auth', 'admine'])->group(function () {
     Route::middleware(['auth', 'organisateur'])->group(function () {
     Route::get('/Home',[OrganizateurController::class,'index'])->name('organisateur.home');     
         });
+    Route::get('/Evenment',[EvenmentController::class,'index'])->name('organisateur.home');
+    Route::post('/Evenment/Ajouter',[EvenmentController::class,'store'])->name('organisateur.add');
+    Route::get('/Evenment',[EvenmentController::class,'index'])->name('organisateur.home');
+
 
 
 

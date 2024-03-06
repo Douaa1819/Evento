@@ -17,6 +17,7 @@ class AdmineMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check() && Auth::user()->role==='admine'){
+            //requête est passée au prochain middleware ou au contrôleur destiné à gérer cette requête
         return $next($request);
       
     }

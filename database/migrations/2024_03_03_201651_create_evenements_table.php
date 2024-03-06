@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('titre');
             $table->text('description');
+            $table->unsignedBigInteger('organizateur_id'); 
+            $table->foreign('organizateur_id')->references('id')->on('organizateurs')->onDelete('cascade');
             $table->unsignedBigInteger('category_id'); 
              $table->string('lieu');
             $table->integer('place_disponible');
             $table->boolean('validation');
-            $table->boolean('admin_validation');
+            $table->boolean('admin_validation')->default('0');
             $table->date('date');
             $table->string('image');
             $table->timestamps();

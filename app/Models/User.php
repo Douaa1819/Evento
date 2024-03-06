@@ -31,9 +31,9 @@ class User extends Authenticatable
         return $this->hasOne(Client::class);
     }
 
-    public function organisateur()
+    public function Organizateur()
     {
-        return $this->hasOne(Organizateur::class);
+        return $this->hasOne(Organizateur::class, 'user_id', 'id');
     }
     /**
      * The attributes that should be hidden for serialization.
