@@ -36,7 +36,7 @@
                                 Home
                             </span>
                         </a>
-                        <a class="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800" href="#">
+                        <a class="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800" href="{{route('validation')}}">
                             <span class="text-left">
                                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z">
@@ -45,9 +45,6 @@
                             </span>
                             <span class="mx-2 text-sm font-normal">
                                 Evenment
-                                <span class="w-4 h-2 p-1 ml-4 text-xs text-gray-400 bg-gray-200 rounded-lg">
-                                    0
-                                </span>
                             </span>
                         </a>
                         <a class="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800" href="{{route('catégorie.index')}}">
@@ -102,13 +99,7 @@
                         <a href="#" class="relative block">
                           
                         </a>
-                        <button class="flex items-center text-gray-500 dark:text-white text-md">
-                            Charlie R
-                            <svg width="20" height="20" class="ml-2 text-gray-400" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1408 704q0 26-19 45l-448 448q-19 19-45 19t-45-19l-448-448q-19-19-19-45t19-45 45-19h896q26 0 45 19t19 45z">
-                                </path>
-                            </svg>
-                        </button>
+                        
                     </div>
                 </div>
             </header>

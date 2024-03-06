@@ -20,6 +20,20 @@ class AdminController extends Controller
         return view('admine.home', compact('nombreUtilisateurs', 'nombreEvenments','nombreCatégorie'));
     }
 
+
+    public function improve(Evenement $evenements){
+        $evenements=Evenement::all();
+        return view('admine.validerEvenment',compact('evenements'));
+    }
+
+
+    public function valider(Evenement $evenement)
+{
+    $evenement->admin_validation = '1';
+    $evenement->save();
+    return redirect()->back()->with('success', 'L\'événement a été validé avec succès');
+}
+
     /**
      * Show the form for creating a new resource.
      */
