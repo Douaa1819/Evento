@@ -31,6 +31,7 @@ class EvenmentRequest extends FormRequest
             'date' => 'required|date', 
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'validation' => 'required|boolean',
+
         ];
     }
 }

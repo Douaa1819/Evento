@@ -1,1 +1,1 @@
-hy client
+<x-head></x-head>

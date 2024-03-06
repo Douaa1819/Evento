@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Evenement;
 use App\Models\Organizateur;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,10 @@ class OrganizateurController extends Controller
      */
     public function index()
     {
-       return view('organisateur.home');
+        $evenement =Evenement::all();
+        $organisateurId = auth()->id();
+        $categorie=Category::all();
+       return view('organisateur.home',compact('categorie' ,'evenement','organisateurId'));
     }
 
     /**

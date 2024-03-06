@@ -44,9 +44,8 @@ class EvenmentController extends Controller
         $evenment->place_disponible=$request->place_disponible;
         $evenment->date = $request->date;
         if ($request->hasFile('image')) {
-            // Stockez l'image dans le dossier 'public/images' et récupérez le chemin
             $imagePath = $request->image->store('images', 'public');
-            // Stockez le chemin de l'image dans la base de données
+            // Stockez  dans la base de données
             $evenment->image = $imagePath;
         }
         $evenment->validation=$request->validation;
@@ -70,29 +69,36 @@ class EvenmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Evenement $evenment)
     {
-        //
+   
+        $categorie=Category::all();
+
+        return view('organisateur.modifierEvenment',compact('categorie','evenment'));
+    }
+    public function modifier(Evenement $evenmentId)
+    {
+       
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EvenmentRequest $request, Evenement $evenment)
-    {
-        $evenment = new Evenement();
-        $evenment->titre=$request->titre;
-        $evenment->description=$request->description;
-        $evenment->category_id=$request->category_id;
-        $evenment->lieu=$request->lieu;
-        $evenment->organisateur_id = $request->organisateur_id;
-        $evenment->place_disponible=$request->place_disponible;
-        $evenment->date=$request->date;
-        $evenment->image=$request->image;
-        $evenment->validation=$request->validation;
-        $evenment->save();
-        return redirect()->back()->with('success', 'Le évenment mis a jour avec succès.');
+    public function update(EvenmentRequest $request,Evenement $evenment)
+    {   
+       
+       
+        if ($request->hasFile('image')) {
+            $imagePath = $request->image->store('images', 'public');
+            $evenment->image = $imagePath;
+        }
+       
+        
+        $evenment->fill($request->validated());
+        $evenment->save();       
+         return redirect()->back()->with('success', 'L\'événement a été mis à jour avec succès.');
     }
+    
 
     /**
      * Remove the specified resource from storage.

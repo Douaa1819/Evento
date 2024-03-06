@@ -33,7 +33,6 @@
             <tr>
                 <td class="border px-4 py-2">{{ $cat->nom }}</td>
                 <td class="border px-4 py-2 flex justify-around">
-                    <!-- Bouton Modifier (ajuster selon votre logique de modification) -->
                     <!-- Bouton Modifier -->
 <button class="btn-edit bg-blue-500 hover:bg-blue-700 text-white mx-4 font-bold py-1 px-2 rounded flex items-center" data-id="{{ $cat->id }}" data-nom="{{ $cat->nom }}">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -92,7 +91,6 @@
             @csrf
             <input type="hidden" name="_method" value="PUT">
             @method('PUT')
-            <input type="hidden" id="specialiteId" name="id">
             <div class="mb-4">
                 <label for="editNom" class="block text-gray-700 text-sm font-bold mb-2">Nom de Catégorie</label>
                 <input type="text" id="editNom" name="nom" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -129,14 +127,12 @@
         const modalEdit = document.getElementById('modalEdit');
         const closeEditModal = document.getElementById('closeEditModal');
     
-        editButtons.forEach(button => {
+    editButtons.forEach(button => {
     button.addEventListener('click', function() {
         const id = button.getAttribute('data-id');
         const nom = button.getAttribute('data-nom');
-
-        // Mettez à jour l'URL d'action avec l'ID de la catégorie
         const form = document.getElementById('editForm');
-        form.action = `/Catégorie/Modifier/${id}`; // Assurez-vous que cette URL correspond à la définition de votre route
+        form.action = `/Catégorie/Modifier/${id}`; 
 
         document.getElementById('editNom').value = nom;
         modalEdit.classList.remove('hidden');

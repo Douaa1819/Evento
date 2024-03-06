@@ -58,11 +58,14 @@ Route::middleware(['auth', 'admine'])->group(function () {
 
     Route::middleware(['auth', 'organisateur'])->group(function () {
     Route::get('/Home',[OrganizateurController::class,'index'])->name('organisateur.home');     
-        });
+
     Route::get('/Evenment',[EvenmentController::class,'index'])->name('organisateur.home');
     Route::post('/Evenment/Ajouter',[EvenmentController::class,'store'])->name('organisateur.add');
     Route::get('/Evenment',[EvenmentController::class,'index'])->name('organisateur.home');
-
+    Route::put('/Evenment/Modifier/{evenment}',[EvenmentController::class,'update'])->name('evenement.update');
+    Route::get('/Evenment/ModifierEvent/{evenment}',[EvenmentController::class,'edit'])->name('modifier');
+    Route::delete('/Evenment/Supprimer/{evenment}',[EvenmentController::class,'destroy'])->name('evenement.delete');
+});
 
 
 
