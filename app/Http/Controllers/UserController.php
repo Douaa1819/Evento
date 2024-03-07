@@ -12,7 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-      $utilisateur = User::all();
+    $utilisateur = User::where('role', 'client')
+    ->orWhere('role', 'organisateur')->get();
       return view('admine.utilisateur',compact('utilisateur'));
     }
 

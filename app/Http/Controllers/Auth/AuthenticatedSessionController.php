@@ -40,7 +40,7 @@ if ($user->role == 'client') {
     if($user->organisateur->is_banned == '1'){ 
         abort('403','unauthorized');
     }elseif($user->organisateur->is_banned == '0'){ 
-        return redirect('/Home');
+        return redirect('/Organisateur');
     }
 } elseif ($user->role == 'admine') {
     return redirect('/Admine');

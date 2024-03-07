@@ -18,20 +18,11 @@
             <a href="#" class="hover:text-gray-600">Accueil</a>
             <a href="#" class="hover:text-gray-600">Événements</a>
             <a href="#" class="hover:text-gray-600">Contact</a>
+            <a href="{{ route('logout.perform') }}" class="hover:text-gray-600">Logout</a>
         </nav>
     </div>
 </header>
 
-<x-css></x-css>
-<nav id="navigation" class="bg-black text-white">
-    <div class="container mx-auto px-4 py-2">
-        <ul class="flex justify-center">
-           @foreach ($categories as $categorie)
-                <li class="mx-4"><a href="#" class="hover:text-gray-400">{{ $categorie->nom }}</a></li>
-           @endforeach
-        </ul>
-    </div>
-</nav>
 
 </nav>
 
@@ -56,9 +47,18 @@
             <!-- plus de slides ici -->
         </div>
     </div>
+    <nav id="navigation" class="bg-black text-white">
+        <div class="container mx-auto px-4 py-2">
+            <ul class="flex justify-center">
+               @foreach ($categories as $categorie)
+                    <li class="mx-4"><a href="#" class="hover:text-gray-400">{{ $categorie->nom }}</a></li>
+               @endforeach
+            </ul>
+        </div>
+    </nav>
 @foreach ($evenements as $evenement )
     
-@endforeach
+
 
 <!-- Event CONTENT -->
 <div class="container mx-auto px-4 py-8">
@@ -87,10 +87,11 @@
                 </div>
             </div>
         </div>
+       
         <!-- more event  -->
     </div>
 </div>
-
+@endforeach
 
 <!-- FOOTER -->
 <footer class="bg-gray-800 text-white mt-10">
@@ -122,3 +123,56 @@
 
 </body>
 </html>
+
+
+<style>
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .carousel-slide {
+        width: 100%;
+        flex-shrink: 0;
+        position: relative;
+    }
+    
+    .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 1270px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+    
+    .carousel img {
+        width: 100%;
+        height: 72%; 
+        object-fit: cover; 
+    }
+    
+    .carousel-caption {
+        position: absolute;
+        bottom: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        color: #0000
+        padding: 1.5rem; 
+        border-radius: 8px;
+        max-width: 70%;
+        text-align: center;
+        box-shadow: transparent;
+        font-family: 'Open Sans', sans-serif; 
+    }
+    
+    .carousel-caption h2 {
+        font-size: 2.5rem; 
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1.5rem; 
+    }
+    </style>

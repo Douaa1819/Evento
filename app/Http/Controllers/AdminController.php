@@ -26,12 +26,28 @@ class AdminController extends Controller
         return view('admine.validerEvenment',compact('evenements'));
     }
 
-
+    public function block(User $user){
+        if($user->client){
+    $user->client->is_banned='1';
+    $user->client->save();}
+    elseif($user->organisateur){
+        $user->organisateur->is_banned='1';
+        $user->organisateur->save();
+    }
+    return back()->with('success', 'Utilisateur débloqué avec succès.');
+    }
     public function valider(Evenement $evenement)
 {
+    if($evenement->admin_validation =='0')
     $evenement->admin_validation = '1';
     $evenement->save();
-    return redirect()->back()->with('success', 'L\'événement a été validé avec succès');
+    return redirect()->back()->with('success', 'L\'événement a été validé avec succès');}
+
+public function invalider(Evenement $evenement){
+    if($evenement->admin_validation =='1')
+    $evenement->admin_validation = '0';
+    $evenement->save();
+    return redirect()->back()->with('success', 'L\'événement a été invalidé avec succès');
 }
 
     /**

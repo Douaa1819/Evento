@@ -41,8 +41,13 @@ Route::middleware(['auth', 'admine'])->group(function () {
     Route::post('/Utilisateur-access/{user}/debloquer',[UserController::class,'unblock'])->name('admine.débloquer');
     Route::get('/Evenment/validtion',[AdminController::class,'improve'])->name('validation');
     Route::post('/Evenment/valider/{evenement}',[AdminController::class,'valider'])->name('valider');
+    Route::post('/Evenment/invalider/{evenement}',[AdminController::class,'invalider'])->name('invalider');
 
-
+    Route::get('/logout', function () {
+        request()->session()->invalidate();
+        \Illuminate\Support\Facades\Auth::logout();
+        return redirect('/login');
+    })->name('logout.perform');
     });
 //-------------------------------------------------------------------------------------------------------------------------------------
 
@@ -51,6 +56,12 @@ Route::middleware(['auth', 'admine'])->group(function () {
 
     Route::middleware(['auth', 'client'])->group(function () {
     Route::get('/index',[ClientController::class,'index'])->name('client.home');
+    
+Route::get('/logout', function () {
+    request()->session()->invalidate();
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+})->name('logout.perform');
 
     });
 
@@ -82,9 +93,4 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/logout', function () {
-    request()->session()->invalidate();
-    \Illuminate\Support\Facades\Auth::logout();
-    return redirect('/login');
-})->name('logout.home');
 require __DIR__.'/auth.php';
