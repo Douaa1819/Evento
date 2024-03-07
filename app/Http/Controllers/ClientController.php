@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Client;
+use App\Models\Evenement;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,7 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view ('client.index');
+        $categories= Category::all();
+        $evenements=Evenement::all();
+        return view ('client.index' , compact('evenements','categories'));
     }
 
     /**

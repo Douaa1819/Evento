@@ -20,6 +20,17 @@ class OrganizateurController extends Controller
        return view('organisateur.home',compact('categorie' ,'evenement','organisateurId'));
     }
 
+    public function doashbord(){
+
+        return view('organisateur.doashbord');
+    }
+
+    public function add(){
+        $organisateurId = auth()->id();
+        $categorie=Category::all();
+        return view('organisateur.ajouterEvenment',compact('categorie' ,'organisateurId'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
