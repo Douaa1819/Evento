@@ -21,15 +21,15 @@ class EvenmentRequest extends FormRequest
      */
     public function rules(): array
     {
+       
         return [
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
             'category_id' => 'required|integer',
             'lieu' => 'required|string',
-            'organizateur_id' => 'required|integer|exists:organizateurs,id',
+            'organizateur_id' => 'required|exists:organizateurs,id',
             'place_disponible' => 'required|integer',
             'date' => 'required|date', 
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'validation' => 'required|boolean',
 
         ];

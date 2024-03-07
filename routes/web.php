@@ -44,8 +44,6 @@ Route::middleware(['auth', 'admine'])->group(function () {
 
 
     });
-
-
 //-------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -62,7 +60,7 @@ Route::middleware(['auth', 'admine'])->group(function () {
 
     Route::middleware(['auth', 'organisateur'])->group(function () {
     Route::get('/Home',[OrganizateurController::class,'index'])->name('organisateur.index');  
-    Route::get('/index',[OrganizateurController::class,'doashbord'])->name('organisateur.doashbord');        
+    Route::get('/Organisateur',[OrganizateurController::class,'doashbord'])->name('organisateur.doashbord');        
     Route::get('/Evenment',[EvenmentController::class,'index'])->name('organisateur.home');
     Route::get('/Evenment/Ajouter',[OrganizateurController::class,'add'])->name('ajouter');
     Route::post('/Evenment/Ajouter',[EvenmentController::class,'store'])->name('organisateur.add');

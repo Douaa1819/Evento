@@ -33,23 +33,9 @@ class EvenmentController extends Controller
     public function store(EvenmentRequest $request)
     {
         try {
-
-        $organisateurId = auth()->id();
-        $evenment = new Evenement();
-        $evenment->organizateur_id = $organisateurId  ;
-        $evenment->titre=$request->titre;
-        $evenment->description=$request->description;
-        $evenment->category_id=$request->category_id;
-        $evenment->lieu=$request->lieu;
-        $evenment->place_disponible=$request->place_disponible;
-        $evenment->date = $request->date;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->image->store('images', 'public');
-            // Stockez  dans la base de données
-            $evenment->image = $imagePath;
-        }
-        $evenment->validation=$request->validation;
-        $evenment->save();
+         
+         Evenement::create($request->validated());
+       
         return redirect()->back()->with('success', 'Le évenment ajoutée avec succès.');
     } catch (\Exception $e) {
         Log::error($e->getMessage());
@@ -87,15 +73,8 @@ class EvenmentController extends Controller
     public function update(EvenmentRequest $request,Evenement $evenment)
     {   
        
-       
-        if ($request->hasFile('image')) {
-            $imagePath = $request->image->store('images', 'public');
-            $evenment->image = $imagePath;
-        }
-       
-        
-        $evenment->fill($request->validated());
-        $evenment->save();       
+         $evenment->update($request->validated());
+           
          return redirect()->back()->with('success', 'L\'événement a été mis à jour avec succès.');
     }
     
