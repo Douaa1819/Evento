@@ -22,20 +22,30 @@ class EvenmentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+     public function search()
+    {
+
+        $query = Evenement::all(); 
+        if ($search = request('search')) {
+            $query->where('name', 'like', '%'. $search . '%');
+        }
+        $evenements = $query->get();
+        return view("welcome", compact('evenment'));
+    }
     public function create()
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(EvenmentRequest $request)
     {
-        try {
-         
-         Evenement::create($request->validated());
-       
+        try {  
+        Evenement::create($request->validated());    
         return redirect()->back()->with('success', 'Le évenment ajoutée avec succès.');
     } catch (\Exception $e) {
         Log::error($e->getMessage());

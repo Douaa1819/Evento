@@ -43,11 +43,11 @@ Route::middleware(['auth', 'admine'])->group(function () {
     Route::post('/Evenment/valider/{evenement}',[AdminController::class,'valider'])->name('valider');
     Route::post('/Evenment/invalider/{evenement}',[AdminController::class,'invalider'])->name('invalider');
 
-    Route::get('/logout', function () {
+    Route::get('/Admine/logout', function () {
         request()->session()->invalidate();
         \Illuminate\Support\Facades\Auth::logout();
         return redirect('/login');
-    })->name('logout.perform');
+    })->name('logout.performe');
     });
 //-------------------------------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +79,12 @@ Route::get('/logout', function () {
     Route::put('/Evenment/Modifier/{evenment}',[EvenmentController::class,'update'])->name('evenement.update');
     Route::get('/Evenment/ModifierEvent/{evenment}',[EvenmentController::class,'edit'])->name('modifier');
     Route::delete('/Evenment/Supprimer/{evenment}',[EvenmentController::class,'destroy'])->name('evenement.delete');
+
+    Route::get('/Organizateur/Logout', function () {
+        request()->session()->invalidate();
+        \Illuminate\Support\Facades\Auth::logout();
+        return redirect('/login');
+    })->name('logout.performs');
 });
 
 

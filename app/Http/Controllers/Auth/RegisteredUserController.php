@@ -75,7 +75,7 @@ class RegisteredUserController extends Controller
         if ($request->role === 'client') { 
             return redirect('/index');
         } elseif ($request->role === 'organisateur') {  
-            return redirect('/Home');
+            return redirect('/Organisateur');
         } elseif ($request->role === 'admine') { 
             return redirect('/Admine');
         } else {
