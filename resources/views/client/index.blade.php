@@ -66,11 +66,14 @@
     @foreach ($evenements as $evenement)
 <!-- Card -->
 <div class="max-w-sm mx-auto mt-10 bg-white rounded-lg border border-gray-100 shadow-md hover:bg-gray-100">
-    <img class="rounded-t-lg" src="https://via.placeholder.com/400x200" alt="Image de l'événement">
+    <img class="rounded-t-lg"  src="{{ asset('storage/images/' . $evenement->image) }}" alt="{{ $evenement->titre }}">
 
     <div class="p-5">
         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$evenement->titre}}</h2>
-        <p class="mb-3 font-normal text-gray-700">{{$evenement->description}}</p>
+        <p class="mb-3 font-normal text-gray-700"><p class="text-gray-600 mt-2">
+            {{ Str::limit($evenement->description, 100, '...') }}
+        </p>
+        </p>
 
         <div class="flex items-center text-gray-700 mb-4">
             <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
@@ -82,13 +85,19 @@
         </div>
         <div class="flex items-center text-gray-700 mb-4">
             <i class="fas fa-users text-red-500 mr-2"></i>
-            <p class="text-sm"> places disponibles</p>
+            <p class="text-sm"> places disponibles : {{$evenement->place_disponible}}</p>
         </div>
         <span class="text-red-500 font-bold mb-2">15€</span>
 
         <div class="flex justify-between items-center">
             <a href="#" class="text-red-500 bg-transparent border border-red-500 hover:bg-red-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white">Détails</a>
-            <a href="#" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Réserver</a>
+            <form action="{{ route('reservations.create', $evenement->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                    Réserver
+                </button>
+            </form>
+            
 
         </div>
     </div>
@@ -133,6 +142,22 @@
         </div>
     </div>
 </footer>
+
+@if(session('success'))
+    <script>
+        function showSuccessPopup() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Succès!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        }
+        showSuccessPopup();
+    </script>
+@endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </body>
 </html>

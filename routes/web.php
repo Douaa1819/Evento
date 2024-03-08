@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EvenmentController;
 use App\Http\Controllers\OrganizateurController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,7 @@ Route::middleware(['auth', 'admine'])->group(function () {
     Route::get('/index',[ClientController::class,'index'])->name('client.home');
     Route::get('/Recherche',[EvenmentController::class,'search'])->name('search');
     Route::get('/Filtrer/categories/{category}/evenements',[EvenmentController::class,'filtreParCatégorie'])->name('filtrage');
+    Route::post('/reservations/{evenement}', [ReservationController::class, 'create'])->name('reservations.create');
     
     Route::get('/logout', function () {
         request()->session()->invalidate();

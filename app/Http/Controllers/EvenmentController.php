@@ -60,7 +60,15 @@ class EvenmentController extends Controller
     public function store(EvenmentRequest $request)
     {
         try {  
-        Evenement::create($request->validated());    
+            $validatedData = $request->validated();
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('public/images');
+                $imageName = basename($imagePath);
+                $validatedData['image'] = $imageName;
+            }
+        
+            // Create the event with the validated data (including the image)
+            Evenement::create($validatedData);
         return redirect()->back()->with('success', 'Le évenment ajoutée avec succès.');
     } catch (\Exception $e) {
         Log::error($e->getMessage());
@@ -97,8 +105,19 @@ class EvenmentController extends Controller
      */
     public function update(EvenmentRequest $request,Evenement $evenment)
     {   
-       
-         $evenment->update($request->validated());
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('image')) {
+            // Store the new image and get its path
+            $imagePath = $request->file('image')->store('public/images');
+            // Extract the filename
+            $imageName = basename($imagePath);
+            // Add or update the image name in the validated data
+            $validatedData['image'] = $imageName;
+        }
+    
+        // Update the event with the new data (including possibly a new image)
+        $evenment->update($validatedData);
            
          return redirect()->back()->with('success', 'L\'événement a été mis à jour avec succès.');
     }

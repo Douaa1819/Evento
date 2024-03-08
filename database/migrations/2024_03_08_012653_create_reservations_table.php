@@ -16,7 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('organizateur_id'); 
             $table->foreign('organizateur_id')->references('id')->on('organizateurs')->onDelete('cascade');
             $table->unsignedBigInteger('client_id'); 
-            $table->foreign('client_id')->references('id')->on('organizateurs')->onDelete('cascade');
+            $table->boolean('status')->default('0');
+            $table->foreign('client_id')->references('id')->on('client')->onDelete('cascade');
+            $table->unsignedBigInteger('evenement_id'); 
+            $table->foreign('evenement_id')->references('id')->on('evenements')->onDelete('cascade');
             $table->timestamps();
         });
     }

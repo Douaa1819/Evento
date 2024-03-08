@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -18,11 +19,34 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, Evenement $evenement)
     {
-        //
-    }
-
+            if ($evenement->place_disponible <= 0) {
+                return back()->with('error', 'Plus de places disponibles pour cet événement.');
+            }
+            if ($evenement->validation == 0) {
+                $reservation = new Reservation([
+                    'client_id' => auth()->user()->client->id,
+                    'evenement_id' => $evenement->id,
+                    'status' => 0,
+                ]);
+                $reservation->save();
+                $evenement->place_disponible -= 1;
+                $evenement->save();
+                return back()->with('message', 'Votre réservation est en attente de validation par l\'organisateur.');
+            } elseif ($evenement->validation == 1) {
+                $reservation = new Reservation([
+                    'client_id' => auth()->user()->client->id,
+                    'evenement_id' => $evenement->id,
+                    'status' => 1, 
+                ]);
+                $reservation->save();
+                $evenement->place_disponible -= 1;
+                $evenement->save();
+                return back()->with('success', 'Votre place a été réservée avec succès.');
+            }
+        }
+    
     /**
      * Store a newly created resource in storage.
      */

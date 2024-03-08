@@ -23,4 +23,9 @@ public function category()
     return $this->belongsTo(Category::class, 'category_id');
 }
 
+public function reservation()
+{
+    return $this->hasMany(Reservation::class,'evenement_id');
+}
+
 }
