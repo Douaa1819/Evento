@@ -19,6 +19,8 @@ class ClientController extends Controller
         return view ('client.index' , compact('evenements','categories'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -38,9 +40,9 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show(Evenement $evenement)
     {
-        //
+        return view ('client.evenement' , compact('evenement'));
     }
 
     /**

@@ -57,6 +57,7 @@ Route::middleware(['auth', 'admine'])->group(function () {
 
     Route::middleware(['auth', 'client'])->group(function () {
     Route::get('/index',[ClientController::class,'index'])->name('client.home');
+    Route::get('/Evenment-détails/{evenement}',[ClientController::class,'show'])->name('event.details');
     Route::get('/Recherche',[EvenmentController::class,'search'])->name('search');
     Route::get('/Filtrer/categories/{category}/evenements',[EvenmentController::class,'filtreParCatégorie'])->name('filtrage');
     Route::post('/reservations/{evenement}', [ReservationController::class, 'create'])->name('reservations.create');

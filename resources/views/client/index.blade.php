@@ -90,7 +90,7 @@
         <span class="text-red-500 font-bold mb-2">15€</span>
 
         <div class="flex justify-between items-center">
-            <a href="#" class="text-red-500 bg-transparent border border-red-500 hover:bg-red-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white">Détails</a>
+            <a href="{{ route('event.details', ['evenement' => $evenement->id]) }}" class="text-red-500 bg-transparent border border-red-500 hover:bg-red-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white">Détails</a>
             <form action="{{ route('reservations.create', $evenement->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
@@ -104,7 +104,7 @@
 </div>
 @endforeach
     </div>
-    <div class="flex justify-center my-4">
+    <div class="flex justify-center  my-4">
         {{ $evenements->links() }}
     </div>
     
@@ -147,20 +147,7 @@
     </div>
 </footer>
 
-@if(session('success'))
-    <script>
-        function showSuccessPopup() {
-            Swal.fire({
-                icon: 'success',
-                title: 'Succès!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 3000
-            });
-        }
-        showSuccessPopup();
-    </script>
-@endif
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </body>
