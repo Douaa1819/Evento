@@ -25,14 +25,29 @@ class EvenmentController extends Controller
 
      public function search()
     {
-
-        $query = Evenement::all(); 
+        $categories=Category::all();
+      // construire la requête pour retourne une instance
+        $query = Evenement::query();
         if ($search = request('search')) {
-            $query->where('name', 'like', '%'. $search . '%');
+            $query->where('titre', 'like', '%' . $search . '%');
+     
         }
         $evenements = $query->get();
-        return view("welcome", compact('evenment'));
+        if ($evenements->isEmpty()) {
+            return back()->with('alert', 'Aucun événement trouvé pour ce titre.');
+        }
+    
+        return view("client.index", compact('evenements','categories'));
     }
+
+
+    public function filtreParCatégorie(Category $category)
+    {
+        $categories=Category::all();
+        $evenements = $category->evenements;
+        return view("client.index", compact('evenements','categories','category'));
+    }
+
     public function create()
     {
         //

@@ -56,14 +56,16 @@ Route::middleware(['auth', 'admine'])->group(function () {
 
     Route::middleware(['auth', 'client'])->group(function () {
     Route::get('/index',[ClientController::class,'index'])->name('client.home');
+    Route::get('/Recherche',[EvenmentController::class,'search'])->name('search');
+    Route::get('/Filtrer/categories/{category}/evenements',[EvenmentController::class,'filtreParCatégorie'])->name('filtrage');
     
-Route::get('/logout', function () {
-    request()->session()->invalidate();
-    \Illuminate\Support\Facades\Auth::logout();
-    return redirect('/login');
-})->name('logout.perform');
+    Route::get('/logout', function () {
+        request()->session()->invalidate();
+        \Illuminate\Support\Facades\Auth::logout();
+        return redirect('/login');
+    })->name('logout.perform');
 
-    });
+        });
 
 //---------------------------------------------------------------------------------------------------------------------------------------
 

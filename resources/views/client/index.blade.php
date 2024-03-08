@@ -9,10 +9,18 @@
             <span class="text-xl font-bold text-gray-800">Evento</span>
         </a>
         <div class="flex items-center space-x-2">
-            <input type="search" placeholder="Rechercher..." class="px-4 py-2 w-80 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500">
-            <button class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-r-md">
+            <form action="{{ route('search') }}" method="GET">
+            <input type="search"  name="search"  placeholder="Entrer le titre d'événement"  class="px-4 py-2 w-80 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500">
+            <button type="submit"   class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-r-md">
                 <i class="fas fa-search"></i>
-            </button>
+                    </button>
+                    @if (session('alert'))
+            <div class="alert alert-warning" role="alert">
+                {{ session('alert') }}
+            </div>
+        @endif
+
+        </form>
         </div>
         <nav class="flex space-x-4">
             <a href="#" class="hover:text-gray-600">Accueil</a>
@@ -51,12 +59,15 @@
         <div class="container mx-auto px-4 py-2">
             <ul class="flex justify-center">
                @foreach ($categories as $categorie)
-                    <li class="mx-4"><a href="#" class="hover:text-gray-400">{{ $categorie->nom }}</a></li>
+               <li class="mx-4"><a href="{{ route('filtrage', $categorie->id) }}" class="hover:text-gray-400">
+                {{ $categorie->nom }}
+            </a>
+        </li>
                @endforeach
             </ul>
         </div>
     </nav>
-@foreach ($evenements as $evenement )
+               @foreach ($evenements as $evenement )
     
 
 
