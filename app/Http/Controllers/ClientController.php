@@ -45,6 +45,8 @@ class ClientController extends Controller
         return view ('client.evenement' , compact('evenement'));
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -40,7 +40,7 @@
                       </button>
                   </form>
                   @if($evenements->validation == '1')
-                  <form action="" method="POST">
+                  <form action="{reservation.users" method="POST">
                       @csrf
                       <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded inline-flex items-center">
                           <i class="fas fa-ticket-alt"></i> Réservations

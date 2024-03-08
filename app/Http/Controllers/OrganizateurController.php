@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Evenement;
 use App\Models\Organizateur;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class OrganizateurController extends Controller
@@ -34,6 +35,13 @@ class OrganizateurController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+
+     public function Reservation(Evenement $evenment)
+     {
+        return view('organisateur.reservation',compact('evenment'));
+     }
+        
     public function create()
     {
         //

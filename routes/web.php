@@ -84,6 +84,10 @@ Route::middleware(['auth', 'admine'])->group(function () {
     Route::put('/Evenment/Modifier/{evenment}',[EvenmentController::class,'update'])->name('evenement.update');
     Route::get('/Evenment/ModifierEvent/{evenment}',[EvenmentController::class,'edit'])->name('modifier');
     Route::delete('/Evenment/Supprimer/{evenment}',[EvenmentController::class,'destroy'])->name('evenement.delete');
+    Route::patch('/reservations/accept/{reservation}', [ReservationController::class, 'accept'])->name('reservation.accept');
+    Route::get('/reservations/{evenment}', [OrganizateurController::class,'Reservation'])->name('reservation.users');
+
+
 
     Route::get('/Organizateur/Logout', function () {
         request()->session()->invalidate();
