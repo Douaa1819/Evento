@@ -44,7 +44,7 @@
     </div>
 </nav>
 <div class="relative w-full overflow-hidden">
-    <!-- Slide 1 -->
+    <!-- Slide  -->
     <div class="flex">
         <img src="{{asset('images/slide.jpg')}}" alt="Slide1" class="w-full h-96 md:h-108 object-cover">
         <div class="absolute bottom-1/4 left-1/4 bg-transparent text-center" style="max-width: 70%; box-shadow: transparent;">
@@ -62,8 +62,8 @@
 
 
 
-    <div class="flex flex-wrap justify-center -mx-4">
-    @foreach ($evenements as $evenement)
+<div class="flex flex-wrap justify-center -mx-4">
+@foreach ($evenements as $evenement)
 <!-- Card -->
 <div class="max-w-sm mx-auto mt-10 bg-white rounded-lg border border-gray-100 shadow-md hover:bg-gray-100">
     <img class="rounded-t-lg"  src="{{ asset('storage/images/' . $evenement->image) }}" alt="{{ $evenement->titre }}">
@@ -104,8 +104,12 @@
 </div>
 @endforeach
     </div>
+    <div class="flex justify-center my-4">
+        {{ $evenements->links() }}
+    </div>
     
-<!-- Featured section -->
+    
+
 
 
 

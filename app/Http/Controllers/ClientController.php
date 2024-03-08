@@ -15,7 +15,7 @@ class ClientController extends Controller
     public function index()
     {
         $categories= Category::all();
-        $evenements = Evenement::where('admin_validation', 1)->get();
+        $evenements = Evenement::where('admin_validation', 1)->paginate(3);
         return view ('client.index' , compact('evenements','categories'));
     }
 
