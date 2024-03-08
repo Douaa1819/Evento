@@ -12,10 +12,11 @@ class Category extends Model
     protected $table = 'categories';
     protected $fillable = ['nom'];
 
-    public function evenements()
+public function evenements()
 {
-    return $this->hasMany(Evenement::class, 'category_id');
+    return $this->hasMany(Evenement::class)->where('admin_validation', 1);
 }
+
 }
 
 

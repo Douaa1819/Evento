@@ -27,7 +27,7 @@ class EvenmentController extends Controller
     {
         $categories=Category::all();
       // construire la requête pour retourne une instance
-        $query = Evenement::query();
+      $query = Evenement::where('admin_validation', 1);
         if ($search = request('search')) {
             $query->where('titre', 'like', '%' . $search . '%');
      
@@ -44,7 +44,7 @@ class EvenmentController extends Controller
     public function filtreParCatégorie(Category $category)
     {
         $categories=Category::all();
-        $evenements = $category->evenements;
+        $evenements = $category->evenements()->where('admin_validation', 1)->get();
         return view("client.index", compact('evenements','categories','category'));
     }
 

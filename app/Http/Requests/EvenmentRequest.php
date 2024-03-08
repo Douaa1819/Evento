@@ -31,6 +31,7 @@ class EvenmentRequest extends FormRequest
             'place_disponible' => 'required|integer',
             'date' => 'required|date', 
             'validation' => 'required|boolean',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
     }

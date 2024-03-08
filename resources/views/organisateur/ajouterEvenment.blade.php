@@ -51,6 +51,11 @@
                 </select>
             </div>
         </div>
+
+        <div class="md:col-span-2">
+            <label for="image" class="block text-sm font-medium text-gray-700">Image de l'événement</label>
+            <input type="file" name="image" id="image" class="mt-1 block w-full rounded-md border-gray-700 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50" required>
+        </div>
         <div class="flex justify-center">
             <button type="submit" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                 Ajouter un nouvel événement
