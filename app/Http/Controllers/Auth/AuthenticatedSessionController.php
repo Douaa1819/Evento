@@ -37,9 +37,9 @@ if ($user->role == 'client') {
         return redirect('/index');
     }
 } elseif ($user->role == 'organisateur') {
-    if($user->organisateur->is_banned == '1'){ 
+    if($user->organizateur->is_banned == '1'){ 
         abort('403','unauthorized');
-    }elseif($user->organisateur->is_banned == '0'){ 
+    }elseif($user->organizateur->is_banned == '0'){ 
         return redirect('/Organisateur');
     }
 } elseif ($user->role == 'admine') {

@@ -22,7 +22,7 @@ class ReservationController extends Controller
     public function create(Request $request, Evenement $evenement)
     {
             if ($evenement->place_disponible <= 0) {
-                return back()->with('error', 'Plus de places disponibles pour cet événement.');
+                return back()->with('alert', 'Plus de places disponibles pour cet événement.');
             }
             if ($evenement->validation == 0) {
                 $reservation = new Reservation([
@@ -33,7 +33,7 @@ class ReservationController extends Controller
                 $reservation->save();
                 $evenement->place_disponible -= 1;
                 $evenement->save();
-                return view ('client.ticket' , compact('evenement'));
+                return back()->with('success', 'Votre réservation a été effectuée avec succès. Cliquez sur le bouton ci-dessous pour générer votre ticket');
             } elseif ($evenement->validation == 1) {
                 $reservation = new Reservation([
                     'client_id' => auth()->user()->client->id,
@@ -46,7 +46,11 @@ class ReservationController extends Controller
                 return back()->with('error', 'Votre réservation est en attente de validation par l\'organisateur.');
             }
         }
-    
+
+
+        public function ticket(Evenement $evenement){
+      return view ('client.ticket' , compact('evenement'));
+        }
 
 public function accept(Request $request, Reservation $reservation)
 {

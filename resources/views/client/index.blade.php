@@ -1,4 +1,7 @@
 <x-head></x-head>
+
+
+
 <body class="bg-gray-100 font-sans">
 
 <!-- Header-->
@@ -15,11 +18,7 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            @if (session('alert'))
-                <div class="ml-4 bg-pink-100 text-red-800  00 px-4 py-2 rounded-md text-sm" role="alert">
-                    {{ session('alert') }}
-                </div>
-            @endif
+
         </div>
 
         <nav class="flex space-x-4">
@@ -59,6 +58,25 @@
 
 
 
+@if(session('success'))
+<div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+  <span class="sr-only">Info</span>
+  <div>
+    <span class="font-medium">Success alert!</span> {{ session('success') }}
+  </div>
+</div>
+@endif
+
+
+@if (session('alert'))
+<div class="ml-4 bg-pink-100 text-red-800  00 px-4 py-2 rounded-md text-sm" role="alert">
+    {{ session('alert') }}
+</div>
+@endif
+
 
 
 
@@ -97,8 +115,24 @@
                     Réserver
                 </button>
             </form>
-            
 
+    @php
+    $client_id = auth()->user()->client->id ?? null;
+    $hasActiveReservation = \App\Models\Reservation::where('evenement_id', $evenement->id)
+                                                     ->where('client_id', $client_id)
+                                                     ->where('status', 0)
+                                                     ->exists();
+    @endphp
+            @if($hasActiveReservation)
+
+        <!-- bouton de génération de ticket -->
+        <form action="{{ route('ticket', ['evenement' => $evenement->id]) }}" method="GET">
+            @csrf
+            <button type="submit" class="text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+            ticket
+            </button>
+        </form>
+    @endif
         </div>
     </div>
 </div>
@@ -109,15 +143,6 @@
     </div>
     
     
-
-
-
-
-
-
-
-
-
 
 <!-- FOOTER -->
 <footer class="bg-black text-white mt-10">
