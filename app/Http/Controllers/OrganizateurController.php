@@ -15,17 +15,21 @@ class OrganizateurController extends Controller
      */
     public function index()
     {
-        $evenement =Evenement::all();
-        $organisateurId = auth()->id();
+        $organisateurId = auth()->user()->Organizateur->id;
+        $evenement = Evenement::where('organizateur_id', $organisateurId)->get();
         $categorie=Category::all();
        return view('organisateur.home',compact('categorie' ,'evenement','organisateurId'));
     }
 
     public function doashbord(){
-
-        return view('organisateur.doashbord');
+        $organisateur = auth()->user()->Organizateur;
+        $evenements = Evenement::where('organizateur_id', $organisateur->id)
+        ->withCount('reservation')
+        ->get();
+        return view('organisateur.doashbord',compact('evenements'));
     }
 
+    
     public function add(){
         $organisateurId = auth()->id();
         $categorie=Category::all();

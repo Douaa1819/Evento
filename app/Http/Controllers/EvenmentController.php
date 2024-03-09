@@ -66,10 +66,9 @@ class EvenmentController extends Controller
                 $imageName = basename($imagePath);
                 $validatedData['image'] = $imageName;
             }
-        
-            // Create the event with the validated data (including the image)
-            Evenement::create($validatedData);
-        return redirect()->back()->with('success', 'Le évenment ajoutée avec succès.');
+    //Create the event with the validated data (including the image)
+        Evenement::create($validatedData);
+        return redirect()->back()->with('success', 'L\'événement a été ajouté avec succès.');
     } catch (\Exception $e) {
         Log::error($e->getMessage());
         return redirect()->back()->withErrors('Une erreur est survenue lors de l’ajout de l’événement.');
