@@ -39,9 +39,18 @@ class OrganizateurController extends Controller
 
      public function Reservation(Evenement $evenment)
      {
-        return view('organisateur.reservation',compact('evenment'));
+        $reservations = $evenment->reservation()->where('status', 1)->get();
+//le chargement eager sur une instance de modèle
+        $reservations->load('client');
+        return view('organisateur.reservation',compact('evenment' ,'reservations'));
      }
-        
+
+     public function accept(Reservation $reservation)
+{
+    $reservation->update(['status' => 0]);
+    return back()->with('success', 'La réservation a été acceptée avec succès.');
+}
+ 
     public function create()
     {
         //

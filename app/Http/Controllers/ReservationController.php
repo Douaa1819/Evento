@@ -34,7 +34,6 @@ class ReservationController extends Controller
                 $evenement->place_disponible -= 1;
                 $evenement->save();
                 return view ('client.ticket' , compact('evenement'));
-                // return back()->with('message', 'Votre réservation est en attente de validation par l\'organisateur.');
             } elseif ($evenement->validation == 1) {
                 $reservation = new Reservation([
                     'client_id' => auth()->user()->client->id,
@@ -44,7 +43,7 @@ class ReservationController extends Controller
                 $reservation->save();
                 $evenement->place_disponible -= 1;
                 $evenement->save();
-                return view ('client.ticket' , compact('evenement'));
+                return back()->with('error', 'Votre réservation est en attente de validation par l\'organisateur.');
             }
         }
     

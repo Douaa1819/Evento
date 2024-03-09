@@ -40,13 +40,14 @@
                       </button>
                   </form>
                   @if($evenements->validation == '1')
-                  <form action="{reservation.users" method="POST">
+                  <form action="{{ route('evenement.reservations', $evenements->id) }}" method="GET">
                       @csrf
-                      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded inline-flex items-center">
-                          <i class="fas fa-ticket-alt"></i> Réservations
+                      <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded inline-flex items-center">
+                          <i class="fas fa-ticket-alt"></i> réservations
                       </button>
                   </form>
               @endif
+              
               
               </div>
           </div>
