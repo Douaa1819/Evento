@@ -16,7 +16,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
         <br>
-        <select name="role" id="role">
+        <select name="role" id="role" class="rounded border-gray-300">
             <option value="client">Client</option>
             <option value="organisateur">Organisateur</option>
         </select>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring focus:ring-offset-2 focus:ring-red-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

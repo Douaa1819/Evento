@@ -36,10 +36,10 @@ class User extends Authenticatable
         return $this->hasOne(Organizateur::class, 'user_id', 'id');
     }
     
-public function evenements()
-{
-    return $this->hasMany(Evenement::class, 'organisateur_id');
-}
+    public function evenements()
+    {
+        return $this->hasMany(Evenement::class, 'organisateur_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
