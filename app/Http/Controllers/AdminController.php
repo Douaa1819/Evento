@@ -69,9 +69,9 @@ public function invalider(Evenement $evenement){
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Evenement $evenement)
     {
-        //
+        return view('admine.detail',compact('evenement'));
     }
 
     /**

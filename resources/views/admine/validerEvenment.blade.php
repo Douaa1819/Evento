@@ -23,7 +23,12 @@
                 <tr>
                     <td>{{$evenement->organisateur->user->name }} </td>
                     <td>{{$evenement->organisateur->user->email}} </td>
-                    <td>{{ $evenement->titre }}</td>
+                    <td>
+                        <a href="{{ route('evenement.details', $evenement->id) }}" class="text-black hover:text-blue-800">
+                            {{ $evenement->titre }}
+                        </a>
+                    </td>
+                    
                     <td>
                         <form action="{{ $evenement->admin_validation == '0' ? route('valider', ['evenement' => $evenement->id]) : route('invalider', ['evenement' => $evenement->id]) }}" method="POST">
                             @csrf

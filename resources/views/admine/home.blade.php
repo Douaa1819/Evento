@@ -1,7 +1,7 @@
 <x-doashboardAdmin></x-doashboardAdmin>
             <div class="h-screen px-4 pb-24 overflow-auto md:px-6">
                 <h1 class="text-4xl font-semibold text-gray-800 dark:text-white">
-                    Good afternoom, Charlie
+                    Good afternoom
                 </h1>
                
             
