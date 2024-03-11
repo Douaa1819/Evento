@@ -28,7 +28,7 @@ class UserController extends Controller
         $user->organisateur->is_banned='1';
         $user->organisateur->save();
     }
-    return back()->with('success', 'Utilisateur débloqué avec succès.');
+    return back()->with('success', 'Utilisateur est  bloqué avec succès.');
     }
 
 

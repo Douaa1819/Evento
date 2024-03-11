@@ -35,7 +35,7 @@
         </span>
     </p>
     <div class="show-name">
-        <h1>{{$evenement->title}} </h1>
+        <h1>{{$evenement->titre}} </h1>
         <h2 class="text-black">youcode</h2>
     </div>
     <div class="time">
@@ -60,7 +60,7 @@
 </p>
 <div class="right-info-container">
     <div class="show-name">
-        <h1>{{$evenement->title}} </h1>
+        <h1>{{$evenement->titre}} </h1>
     </div>
     <div class="time">
         <p>

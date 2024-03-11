@@ -49,16 +49,18 @@ class ReservationController extends Controller
         }
 
 
-        public function ticket(Evenement $evenement){
-      return view ('client.ticket' , compact('evenement'));
+    public function ticket(Evenement $evenement){
+
+       return view ('client.ticket' , compact('evenement'));
+
         }
 
-public function accept(Request $request, Reservation $reservation)
-{
-    $reservation->status = 0;
-    $reservation->save();
-    return back()->with('success', 'La réservation a été acceptée.');
-}
+    public function accept(Request $request, Reservation $reservation)
+        {
+            $reservation->status = 0;
+            $reservation->save();
+            return back()->with('success', 'La réservation a été acceptée.');
+        }
 
     /**
      * Store a newly created resource in storage.

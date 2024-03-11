@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 
 class OrganizateurController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+ 
     public function index()
     {
         $organisateurId = auth()->user()->Organizateur->id;

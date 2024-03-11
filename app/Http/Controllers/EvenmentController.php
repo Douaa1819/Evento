@@ -9,13 +9,13 @@ use App\Models\Evenement;
 
 class EvenmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+ 
     public function index()
     {
     $organisateurId = auth()->id();
+
      $categorie=Category::all();
+
       return view('organisateur.ajouterEvenment',compact('categorie' ,'organisateurId'));
     }
 
@@ -54,9 +54,7 @@ class EvenmentController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(EvenmentRequest $request)
     {
         try {  

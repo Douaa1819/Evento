@@ -5,14 +5,13 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 
-class CategoryController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+    class CategoryController extends Controller
+    {
+  
     public function index()
     {
-    $categorie=Category::all();
+    $categorie = Category::all();
+
       return view('admine.categorie',compact('categorie'));
     }
 
@@ -34,8 +33,6 @@ class CategoryController extends Controller
         $category->save();
         return redirect()->back()->with('success', 'Catégorie ajoutée avec succès.');
     }
-// traiter les requêtes et de renvoyer des réponses. Cela suit le principe de responsabilité unique, 
-//un des principes SOLID de la programmation orientée objet
     /**
      * Display the specified resource.
      */
